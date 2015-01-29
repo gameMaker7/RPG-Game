@@ -2,24 +2,31 @@
 package Items;
 public abstract class Items {
 
-	int value = 0;
-	int wieght = 0;
+	private int value = 0;
+	private int wieght = 0;
 	String type = "";
-	private int rank = 0;
-	String name = "";
+	private int rank = Gen.gen.nextInt(10) + 1;
+	private String name = "";
+	private boolean useable = true;
 	
-	public Items(String s){
+	public Items(String s, String type2){
+		type = type2;
 		rename(s);
 		stats();
+		System.out.println("Lv." + rank + " (" + type + ") " + getName());
+
 	}
 	/**
 	 * determines value and wieght
 	 */
-	public void stats() {
+	private void stats() {
 		if(type.equals("Potion")){
 			value += 100 * getRank();
 			wieght = 1;
 		}
+		if(type.equals("Scroll")){
+			value += 300 * getRank();
+			}
 		if(type.equals("Book")){
 			value += 50 * getRank();
 			wieght += getRank()/2 + 1;
@@ -42,10 +49,25 @@ public abstract class Items {
 		}
 	}
 	
+	public boolean isUseable() {
+		return useable;
+	}
+	public void setUseable(boolean useable) {
+		this.useable = useable;
+	}
+	public int getValue() {
+		return value;
+	}
+	public int getWieght() {
+		return wieght;
+	}
+	public String getName() {
+		return name;
+	}
 	public String getType() {
 		return type;
 	}
-	public void rename(String s){
+	private void rename(String s){
 		name = s;
 	}
 	public int getRank() {

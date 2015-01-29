@@ -1,13 +1,13 @@
 package Items;
 
 
-public class Dagger extends Items {
+public class Dagger extends Items{
 
 
-	String type = "Dagger";
+	static String type = "Dagger";
 	int rank = Gen.gen.nextInt(10) + 1;
 	public Dagger(String s) {
-		super(s);
+		super(s, type);
 
 	}
 
